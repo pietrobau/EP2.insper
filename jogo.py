@@ -1,32 +1,64 @@
 import Funçoes
+import random 
+#print ('\033[1m  Your Name  \033[0m')
 
-i = 0
-while i < 1: #lopping do jogo
+x = 0
+while x < 1: #lopping do jogo
 
-    num_jogadores = int(input('\nNumero de jogadores (2-4):\n '))
+    num_jogadores = int(input('\033[1m\nNumero de jogadores (2-4):  \033[0m'))
 
     pecas_jogo = Funçoes.cria_pecas()
-    jogo_inicial = Funçoes.inicia_jogo(num_jogadores, pecas_jogo)
+    peças_monte_mesa = Funçoes.inicia_jogo(num_jogadores, pecas_jogo)
 
-    if num_jogadores == 1:
-        print('\nEssas são suas peças:\n {}'.format(jogo_inicial['jogadores']))
-    elif num_jogadores > 1 and num_jogadores < 4:
-        print('\nEssas são suas peças:\n {}'.format(jogo_inicial['jogadores'][0]))
-    else:
-        print(' ERRO!!!!! ')
+    j = -1
 
+    while j == -1:
+        
+        for i in peças_monte_mesa['jogadores']:
 
-
+            print('\033[1m\nEssas são suas peças:\n {}\033[0m'.format(peças_monte_mesa['jogadores'][0]))
 
 
+            mesa = peças_monte_mesa['mesa']
+            peça = peças_monte_mesa['jogadores'][i]
+            monte = peças_monte_mesa['monte']
+            posicoes = Funçoes.posicoes_possiveis(mesa, peça)
+            #print(posicoes)
+            #print(mesa)
+            #print('\033[1m\nVez do jogador {}:\033[0m'.format(i))
+
+            if peça == []:
+                #print('\033[1m  jogador{} venceu  \033[0m'.format(i))
+                j = 50
+            elif posicoes == [] and monte == []:
+                #print('monte vazio')
+                j = 50
+                vencedor = Funçoes.soma_pecas(peça)
+            elif posicoes == []:
+                #print('se lascou, vai ter que comprar')
+                peças_monte_mesa['jogadores'][i].append(random.choice(monte))
+            elif peça == peças_monte_mesa['jogadores'][0]:
+                #pensar em como destacar as pessa que podem ser jogadas
+                jogada = int(input('qual peça vai jogar?\n '))
+                peças_monte_mesa['mesa'] = Funçoes.adiciona_na_mesa(peça[jogada], mesa)
+            else:
+                jogada = random.choice(posicoes)
+                peças_monte_mesa['mesa'] = Funçoes.adiciona_na_mesa(peça[jogada], mesa)
+                print('ele jogou {}'.format(posicoes))
 
 
 
 
 
 
-    continuar = input('\nQuer continuar jogando?\n ') #continuar jogando ou parar lopping
+
+            j = Funçoes.verifica_ganhador(peças_monte_mesa['jogadores'])
+
+    vencedor = Funçoes.verifica_ganhador(peças_monte_mesa['jogadores'])
+    print('\033[1m  jogador{} venceu \033[0m'.format(vencedor))
+
+    continuar = input('\nQuer jogar novamente?\n ') #continuar jogando ou parar lopping
     if continuar == 'sim': 
-        i = 0
+        x = 0
     else:
-        i = 1
+        x = 1
