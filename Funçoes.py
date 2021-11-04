@@ -8,45 +8,17 @@ def cria_pecas():
     return lista_de_pecas
 #___________________________________________________________________________________________________________________
 
-def inicia_jogo(numero_de_jogadores, pecas): #função 2 - iniciar jogo
-
-    if numero_de_jogadores == 2:
-
-        jogador_1 = []
-
-        jogador_2 = []
-
-        for i in range(7):
-
-            jogador_1.append(pecas[i])
-
-            jogador_2.append(pecas[i + 7])
-
-        monte = []
-
-        for i in range(14, len(pecas)):
-
-            monte.append(pecas[i])
-
-        lista_de_jogadores = [jogador_1, jogador_2]
-
-    # Add os outros ifs
-
-
-
-    dicionario = {}
-
-    dicionario['jogadores'] = {}
+def inicia_jogo(numero_de_jogadores, pecas): #Função 2- Inicia jogo
+    mesa=[]
+    dicionario={
+        'jogadores':{},
+        'monte':[],
+        'mesa':[]
+    }
 
     for i in range(numero_de_jogadores):
-
-        dicionario['jogadores'][i] = lista_de_jogadores[i]
-
-    dicionario['monte'] = monte
-
-    dicionario['mesa'] = []
-
-   
+        dicionario["jogadores"][i]=pecas[0+(i*7):7+(i*7)]
+    dicionario["monte"]=pecas[numero_de_jogadores*7::]
 
     return dicionario
 #___________________________________________________________________________________________________________________
