@@ -8,6 +8,7 @@ while x < 1: #lopping do jogo
     pecas_jogo = Funçoes.cria_pecas()
     peças_monte_mesa = Funçoes.inicia_jogo(num_jogadores, pecas_jogo)
     sem_jogadas = 0
+    pontos = []
 
     j = -1
     while j == -1:
@@ -28,15 +29,28 @@ while x < 1: #lopping do jogo
 
 
             if peça == []:
-                vencedor = '\n...jogador {} venceu...\n'.format(i)
+                v = Funçoes.verifica_ganhador(peças_monte_mesa['jogadores'])
+                if v == 0:
+                    vencedor = '\n...Você venceu...\n'
+                else:
+                    vencedor = '\n...jogador {} venceu...\n'.format(v)
                 j = 0
+                break
 
-            elif monte == [] and posicoes == [] and Funçoes.verifica_ganhador(peças_monte_mesa['jogadores']) != -1:
-                #ajustar para quando o monte estiver vazio
-                vencedor = '\n aq1...monte vazio, e sem jogadas possiveis...{}\n'.format(i)
-                #j = 0
 
-            else:
+            if monte == [] and posicoes == [] :
+                sem_jogadas = sem_jogadas + 1
+                pontos.append(Funçoes.soma_pecas(peça))
+                if sem_jogadas == num_jogadores: #ajustar para quando o monte estiver vazio
+                        ganhou = Funçoes.quem_ganha(pontos)
+                        if ganhou == 0:
+                            vencedor = '\n...O jogador {} venceu por pontos...\n'.format(ganhou)
+                        else:
+                            vencedor = '\n...O jogador {} venceu por pontos...\n'.format(ganhou)
+                        j = 0 
+                        break   
+
+            if peça != []:
                 if posicoes == []:
                     if num_jogadores == 4: 
                         if peça == peças_monte_mesa['jogadores'][0]:
@@ -46,12 +60,6 @@ while x < 1: #lopping do jogo
                             print('{}Mão do jogador:{}{}(apenas para teste){}'.format('\033[3;37m',peças_monte_mesa['jogadores'][i],'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
                         
                     else:
-                        if monte == []:
-                            sem_jogadas = sem_jogadas + 1
-                            if sem_jogadas == num_jogadores: #ajustar para quando o monte estiver vazio
-                                vencedor = '\n aq2...monte vazio, e sem jogadas possiveis...\n'.format(i)
-                                j = 0
-
                         aleatorio = random.choice(monte)
                         peças_monte_mesa['jogadores'][i].append(aleatorio)
                         peças_monte_mesa['monte'].remove(aleatorio)
@@ -64,6 +72,7 @@ while x < 1: #lopping do jogo
 
                 else:
                     sem_jogadas = 0
+                    pontos = []
                     if peça == peças_monte_mesa['jogadores'][0]:
                         jogada = int(input('{}\033[1mqual vai jogar?  \033[0m{}'.format('\033[0;36m', '\033[m')))
                     else:
@@ -72,7 +81,10 @@ while x < 1: #lopping do jogo
                     peças_monte_mesa['jogadores'][i].pop(jogada)
                     #checar aqui
                     if peça == [] or Funçoes.verifica_ganhador(peças_monte_mesa['jogadores']) != -1:
-                        vencedor = '\n...jogador {} venceu...\n'.format(i)
+                        if i == 0:
+                            vencedor = '\n...Você venceu...\n'
+                        else:
+                            vencedor = '\n...jogador {} venceu...\n'.format(i)
                         j = 0
                         break
 
