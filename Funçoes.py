@@ -115,3 +115,20 @@ def adiciona_na_mesa(peca, mesa):   #Função 6 - Adicionando peças a mesa num 
         nova_mesa.append(lado)
 
     return nova_mesa
+#___________________________________________________________________________________________________________________
+
+def quem_ganha(pontos):
+    
+    menor = pontos[0]
+    for p in pontos:
+        if p < menor:
+            menor = p
+    j = 0
+    while j < len(pontos):
+        if menor == pontos[j]:
+            ganhou = j
+            j = len(pontos)
+        else:
+            j = j + 1
+
+    return ganhou
