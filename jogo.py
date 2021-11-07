@@ -23,9 +23,8 @@ while x < 1: #lopping do jogo
 
             if peça == peças_monte_mesa['jogadores'][0]:
                 print('{}\n\033[1m MESA:\n {}{}\033[0m'.format('\033[0;34m', '\033[m',mesa))
-                print('{}MONTE:{} {}(APENAS PARA TESTE){}'.format('\033[3;37m',monte,'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
                 print('{}\033[1m\nEssas são suas peças:\n{} {}\033[0m'.format('\033[0;36m', '\033[m',peças_monte_mesa['jogadores'][i]))
-                print('{}posicoes:{} {}(APENAS PARA TESTE){}'.format('\033[3;37m',posicoes,'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
+                print('{}posicoes:{}{}'.format('\033[3;37m',posicoes, '\033[m'))
 
 
             if peça == []:
@@ -41,7 +40,7 @@ while x < 1: #lopping do jogo
             if monte == [] and posicoes == [] :
                 sem_jogadas = sem_jogadas + 1
                 pontos.append(Funçoes.soma_pecas(peça))
-                if sem_jogadas == num_jogadores: #ajustar para quando o monte estiver vazio
+                if sem_jogadas == num_jogadores: 
                         ganhou = Funçoes.quem_ganha(pontos)
                         if ganhou == 0:
                             vencedor = '\n...O jogador {} venceu por pontos...\n'.format(ganhou)
@@ -57,7 +56,6 @@ while x < 1: #lopping do jogo
                             print('{}\033[1m\nVocê passou a vez\033[0m\n{}'.format('\033[4;31m', '\033[m'))
                         else:
                             print('{}\033[1m\nO jogador {} passou a vez\033[0m\n{}'.format('\033[4;32m',i, '\033[m'))
-                            print('{}Mão do jogador:{}{}(apenas para teste){}'.format('\033[3;37m',peças_monte_mesa['jogadores'][i],'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
                         
                     else:
                         aleatorio = random.choice(monte)
@@ -68,7 +66,6 @@ while x < 1: #lopping do jogo
                         else:
                             qnt = len(peças_monte_mesa['jogadores'][i])
                             print('{}\033[1m\nO jogador {} teve que comprar e ficou com {} peças \033[0m\n{}'.format('\033[4;32m',i,qnt, '\033[m'))
-                            print('{}Mão do jogador:{}{}(apenas para teste){}'.format('\033[3;37m',peças_monte_mesa['jogadores'][i],'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
 
                 else:
                     sem_jogadas = 0
@@ -91,7 +88,6 @@ while x < 1: #lopping do jogo
                     if peça != peças_monte_mesa['jogadores'][0]:
                         qnt = len(peças_monte_mesa['jogadores'][i])
                         print('{}\033[1m\nO jogador {} jogou e ficou com {} peças\033[0m{}'.format('\033[0;35m',i,qnt, '\033[m'))
-                        print('{}Mão do jogador:{}{}(apenas para teste){}'.format('\033[3;37m',peças_monte_mesa['jogadores'][i],'\033[7;37m', '\033[m')) #REMOVER ESTE PRINT DEPOIS, está aqui soemnte para testes
 
                         
     print (vencedor)
