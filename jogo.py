@@ -1,6 +1,8 @@
 import Funçoes
 import random 
-
+print('\033[1m\n Bem vindos ao nosso jogo de domino.\n\033[0m')
+print('\033[1m\n Seu objetivo final é ser o primeiro a não ter peças na sua mão ao final do jogo\n\033[0m')
+print('\033[1m\n BOA SORTE!!!!\033[0m')
 x = 0
 while x < 1: #lopping do jogo
 
