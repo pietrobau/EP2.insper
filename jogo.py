@@ -105,3 +105,5 @@ while x < 1: #lopping do jogo
         x = 0
     else:
         x = 1
+
+     #Finalizado
