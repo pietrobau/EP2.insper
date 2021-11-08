@@ -30,9 +30,9 @@ while x < 1: #lopping do jogo
             if peça == []:
                 v = Funçoes.verifica_ganhador(peças_monte_mesa['jogadores'])
                 if v == 0:
-                    vencedor = '\033[0;33;44m\n...Você venceu...\n\033[m'
+                    vencedor = '{}\n...Você venceu...\n{}'.format('\033[4;33m', '\033[m')
                 else:
-                    vencedor = '\033[0;33;44m\n...jogador {} venceu...\n\033[m'.format(v)
+                    vencedor = '{}\n...jogador {} venceu...\n{}'.format('\033[4;33m', v,  '\033[m')
                 j = 0
                 break
 
@@ -43,9 +43,9 @@ while x < 1: #lopping do jogo
                 if sem_jogadas == num_jogadores: 
                         ganhou = Funçoes.quem_ganha(pontos)
                         if ganhou == 0:
-                            vencedor = '\033[0;33;44m\n...Você venceu por pontos...\n\033[m'
+                            vencedor = '\n{}...Você venceu por pontos...\n{}'.format('\033[4;33m', '\033[m')
                         else:
-                            vencedor = '\033[0;33;44m\n...O jogador {} venceu por pontos...\n\033[m'.format(ganhou)
+                            vencedor = '{}\n...O jogador {} venceu por pontos...\n{}'.format('\033[4;33m',ganhou, '\033[m')
                         j = 0 
                         break   
 
@@ -88,9 +88,9 @@ while x < 1: #lopping do jogo
                     #checar aqui
                     if peça == [] or Funçoes.verifica_ganhador(peças_monte_mesa['jogadores']) != -1:
                         if i == 0:
-                            vencedor = '\033[0;33;44m\n...Você venceu...\n\033[m'
+                            vencedor = '\n{}...Você venceu...\n{}'.format('\033[4;33m', '\033[m')
                         else:
-                            vencedor = '\033[0;33;44m\n...jogador {} venceu...\n\033[m'.format(i)
+                            vencedor = '\n{}..jogador {} venceu...\n{}'.format('\033[4;33m', i, '\033[m')
                         j = 0
                         break
 
