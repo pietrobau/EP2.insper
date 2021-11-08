@@ -30,9 +30,9 @@ while x < 1: #lopping do jogo
             if peça == []:
                 v = Funçoes.verifica_ganhador(peças_monte_mesa['jogadores'])
                 if v == 0:
-                    vencedor = '\n...Você venceu...\n'
+                    vencedor = '\033[0;33;44m\n...Você venceu...\n\033[m'
                 else:
-                    vencedor = '\n...jogador {} venceu...\n'.format(v)
+                    vencedor = '\033[0;33;44m\n...jogador {} venceu...\n\033[m'.format(v)
                 j = 0
                 break
 
@@ -43,9 +43,9 @@ while x < 1: #lopping do jogo
                 if sem_jogadas == num_jogadores: 
                         ganhou = Funçoes.quem_ganha(pontos)
                         if ganhou == 0:
-                            vencedor = '\n...O jogador {} venceu por pontos...\n'.format(ganhou)
+                            vencedor = '\033[0;33;44m\n...Você venceu por pontos...\n\033[m'
                         else:
-                            vencedor = '\n...O jogador {} venceu por pontos...\n'.format(ganhou)
+                            vencedor = '\033[0;33;44m\n...O jogador {} venceu por pontos...\n\033[m'.format(ganhou)
                         j = 0 
                         break   
 
@@ -72,16 +72,25 @@ while x < 1: #lopping do jogo
                     pontos = []
                     if peça == peças_monte_mesa['jogadores'][0]:
                         jogada = int(input('{}\033[1mqual vai jogar?  \033[0m{}'.format('\033[0;36m', '\033[m')))
+                        if jogada not in posicoes:
+                            print('{}\033[1m\nVocê jogou uma peça errada, por isso perdeu a vez\033[0m\n{}'.format('\033[4;31m', '\033[m'))
+                            
+                            
+                        else:
+                            peças_monte_mesa['mesa'] = Funçoes.adiciona_na_mesa(peça[jogada], mesa)
+                            peças_monte_mesa['jogadores'][i].pop(jogada)
+
+                
                     else:
                         jogada = random.choice(posicoes)
-                    peças_monte_mesa['mesa'] = Funçoes.adiciona_na_mesa(peça[jogada], mesa)
-                    peças_monte_mesa['jogadores'][i].pop(jogada)
+                        peças_monte_mesa['mesa'] = Funçoes.adiciona_na_mesa(peça[jogada], mesa)
+                        peças_monte_mesa['jogadores'][i].pop(jogada)
                     #checar aqui
                     if peça == [] or Funçoes.verifica_ganhador(peças_monte_mesa['jogadores']) != -1:
                         if i == 0:
-                            vencedor = '\n...Você venceu...\n'
+                            vencedor = '\033[0;33;44m\n...Você venceu...\n\033[m'
                         else:
-                            vencedor = '\n...jogador {} venceu...\n'.format(i)
+                            vencedor = '\033[0;33;44m\n...jogador {} venceu...\n\033[m'.format(i)
                         j = 0
                         break
 
